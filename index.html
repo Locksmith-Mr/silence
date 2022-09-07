@@ -1,16 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
- <meta charset="UTF-8">
- <title>Title</title>
-</head>
-<body id="body">
-    
-	<a href="rystest://admin,123456">打开Demo</a>
-	
-	<a href="https://www.baidu.com" target="_blank">百度一下</a>
-<script>
+<html lang="zh-CN">
 
-</script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./static/js/common.js"></script>
+    <script src="./static/js/init.js"></script>
+    <script src="./static/css/base.css"></script>
+    <title>首页</title>
+</head>
+
+<body id="app" style=" background-color: #f0f0f3">
+    <a-config-provider :locale="zh_CN">
+        <div class="p10">
+            <div style="font-size:30px;margin-bottom: 30px;">Qi专属网站</div>
+            <a-tabs v-model:activeKey="activeKey" tab-position="left">
+                <a-tab-pane v-for="(item,index) in listWebTab" :key="item.label" :tab="item.label">
+                    <div style="height:calc(100vh - 60px)" class="flex">
+                        <div v-for="cardItem in item.children" :key="cardItem.label"
+                            class="p6  flex border-radius-6 pointer mr10"
+                            style="box-shadow: 0px 1px 10px #888888;height:60px;width:220px;"
+                            @click="openPage(cardItem)">
+                            <div>
+                                <img src="./static/img/0.jpg" alt="" srcset="" width="40" height="40"
+                                    class="border-radius-6">
+                            </div>
+                            <div class="ml10">
+                                <span>{{cardItem.label}}</span>
+                                <div class="fs12 ellipsis-one" style="color: #9d9898;width: 150px;">
+                                    {{cardItem.desc}}</div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </a-tab-pane>
+            </a-tabs>
+        </div>
+    </a-config-provider>
 </body>
+
 </html>
+
+<script>
+    const App = {
+        setup() {
+            const { proxy } = getCurrentInstance();
+            function initState() {
+                return {
+                    zh_CN: antd.locales.zh_CN,
+                    activeKey: 0,
+                    message: '测试',
+                    listWebTab: [
+                        {
+                            label: '会计网站', icon: '',
+                            children: [{
+                                label: '函证系统', icon: '', url: 'http://61.155.234.222:8006/qz_hanzheng', desc: '用于做函证'
+                            },
+                            { label: 'CPAS审计管理系统V4', icon: '', url: 'http://118.31.69.145:7008/cpasm4/#', desc: '用于做函证' },
+                            { label: 'CPAS 电子档案系统', icon: '', url: 'http://120.27.243.188:7008/UACheck/login', desc: '用于做函证' }
+                            ]
+                        }
+                        , {
+                            label: '资讯网站', icon: '',
+                            children: [{
+                                label: '企查查', icon: '', url: 'https://www.qcc.com/', desc: '工商信息查询-公司企业注册信息查询-全国企业信用信息公示系统'
+                            },
+                            { label: '263企业邮箱', icon: '', url: 'https://www.263.net/', desc: '企业邮箱_企业直播_电话会议_视频会议系统-263云通信' },
+                            { label: '大型企业数字化平台', icon: '', url: 'http://ytfncc.sljt666.com:8060/nccloud/resources/uap/rbac/login/main/index.html', desc: '' },
+                            { label: '中国会计视野', icon: '', url: 'https://www.esnai.com/', desc: '会计审计第一门户' },
+
+                            ]
+                        }]
+                }
+            }
+            const state = reactive(initState());
+            function openPage(item) {
+                window.open(item.url);
+                proxy.$message.success(`已打开${item.label}`);
+            }
+            return {
+                ...toRefs(state),
+                openPage
+            }
+        }
+    }
+    mountApp(App);
+</script>

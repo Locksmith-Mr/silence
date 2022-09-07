@@ -1,0 +1,53 @@
+<!--
+ * @Description:基础模板
+ * @Author: r_yuesheng
+ * @Date: 2022-06-19 10:08:15
+ * @LastEditTime: 2022-06-30 13:24:48
+ * @LastEditors: r_yuesheng
+ * 注意事项：注意css和js文件的引用路径
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./static/js/common.js"></script>
+    <script src="./static/js/init.js"></script>
+    <title>基础模板</title>
+</head>
+
+<body id="app">
+    <a-config-provider :locale="zh_CN">
+        <div>
+            <a-button type="primary" @click="testClick">{{ message }}</a-button>
+            <a-empty />
+        </div>
+    </a-config-provider>
+</body>
+
+</html>
+
+<script>
+    const App = {
+        setup() {
+            const { proxy } = getCurrentInstance();
+            function initState() {
+                return {
+                    zh_CN: antd.locales.zh_CN,
+                    message: '测试',
+                }
+            }
+            const state = reactive(initState());
+            function testClick() {
+                proxy.$message.success('这是提示语');
+            }
+            return {
+                ...toRefs(state),
+                testClick
+            }
+        }
+    }
+    mountApp(App);
+</script>
