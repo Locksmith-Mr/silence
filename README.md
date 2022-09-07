@@ -1,0 +1,2 @@
+# silence
+static website
