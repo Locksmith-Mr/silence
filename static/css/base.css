@@ -57,6 +57,9 @@
 .mt10 {
   margin-top: 10px;
 }
+.mt20 {
+  margin-top: 20px;
+}
 
 .mt30 {
   margin-top: 30px;
@@ -67,6 +70,9 @@
 }
 .ml20 {
   margin-left: 20px;
+}
+.ml80 {
+  margin-left: 80px;
 }
 
 .mr2 {
@@ -83,6 +89,10 @@
 
 .mb8 {
   margin-bottom: 8px;
+}
+
+.mb30 {
+  margin-bottom: 30px;
 }
 
 .border-radius-6{
@@ -142,6 +152,10 @@
 /* div */
 .t-align-center {
   text-align: center;
+}
+
+.fit-contain{
+  object-fit: contain;
 }
 
 /* mouse */
