@@ -25,11 +25,11 @@
                     </div>
                 </div>
             </div>
-            <div class="mt20">
+            <div style="max-width: 1200px;margin: 16px auto;">
                 <a-tabs v-model:activeKey="activeKey" tab-position="left">
                     <a-tab-pane v-for="(item,index) in listWebTab" :key="item.label" :tab="item.label">
                         <a-row>
-                            <a-col :sm="24" :md="12" :lg="6" :xl="6" :xxl="4" v-for="cardItem in item.children"
+                            <a-col :sm="12" :md="12" :lg="8" :xl="6" :xxl="6" v-for="cardItem in item.children"
                                 :key="cardItem.label">
                                 <div class="p6  flex border-radius-6 pointer mr10 mb8"
                                     style="box-shadow: 0px 1px 10px #888888;height:60px;width:220px;"
@@ -74,10 +74,11 @@
                             { label: 'CPAS审计管理系统V4', icon: './static/img/hj_1.ico', url: 'http://118.31.69.145:7008/cpasm4/#', desc: '处理审计业务' },
                             { label: 'CPAS 电子档案系统', icon: './static/img/hj_2.png', url: 'http://120.27.243.188:7008/UACheck/login', desc: '电子归档服务系统' },
                             {
-                                label: '企查查', icon: './static/img/zx_0.png', url: 'https://www.qcc.com/', desc: '工商信息查询-公司企业注册信息查询-全国企业信用信息公示系统'
+                                label: '企查查', icon: './static/img/zx_0.png', url: 'https://www.qcc.com/', desc: '工商信息企业信用信息查询公示系统'
                             },
                             { label: '263企业邮箱', icon: './static/img/zx_1.png', url: 'https://www.263.net/', desc: '企业邮箱_企业直播_电话会议_视频会议系统-263云通信' },
                             { label: '中国会计视野', icon: './static/img/zx_3.ico', url: 'https://www.esnai.com/', desc: '会计审计第一门户' },
+                            { label: '巨潮资讯', icon: './static/img/jucao.png', url: 'http://www.cninfo.com.cn/new/index', desc: '基金理财好帮手' },
                             ]
                         }
                         , {
